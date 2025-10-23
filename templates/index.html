@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Todo App</h1>
+
+    <form action="{{ url_for('add') }}" method="post">
+        <label for="task_content">Task</label>
+        <input name="task_content" type="text">
+        <button type="submit">Submit</button>
+    </form>
+
+    {% for task in tasks %}
+    <p>{{ task.content }}</p>
+
+    <p>
+
+    </p>
+    {% endfor %}
+
+
+</body>
+
+</html>
