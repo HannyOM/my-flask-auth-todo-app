@@ -17,10 +17,19 @@
     </form>
 
     {% for task in tasks %}
-    <p>{{ task.content }}</p>
+    <span>
+        {{ task.content }}
+        {% if task.status == False %}
+        <p>Incomplete</p>
+        {% else %}
+        <p>Complete</p>
+        {% endif %}
+    </span>
 
     <p>
-
+        <a href="/update/{{ task.id }}">Update</a>
+        <a href="/edit/{{ task.id }}">Edit</a>
+        <a href="">Delete</a>
     </p>
     {% endfor %}
 
