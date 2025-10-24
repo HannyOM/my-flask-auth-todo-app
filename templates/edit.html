@@ -9,6 +9,15 @@
 
 <body>
     <h1>Edit Page</h1>
+
+    <form action="/save/{{ task.id }}" method="post">
+        <label for="edited_task_content">Task</label>
+        <input name="edited_task_content" type="text" value="{{ task.content }}">
+        <button type="submit">Save</button>
+        <a href="">Cancel</a>
+    </form>
+
+
 </body>
 
 </html>
