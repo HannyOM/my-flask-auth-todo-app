@@ -14,10 +14,8 @@
         <label for="edited_task_content">Task</label>
         <input name="edited_task_content" type="text" value="{{ task.content }}">
         <button type="submit">Save</button>
-        <a href="">Cancel</a>
+        <a href="{{url_for('cancel')}}">Cancel</a>
     </form>
-
-
 </body>
 
 </html>
