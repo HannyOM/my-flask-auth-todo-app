@@ -30,7 +30,7 @@ def add():
 @app.route("/update/<int:task_id>")
 def update(task_id): 
     task = Task.query.filter_by(id=task_id).first()
-    task.status = not task.status
+    task.status = not task.status # type: ignore
     task_db.session.commit()
     return redirect(url_for("index"))
 
@@ -45,7 +45,7 @@ def save(task_id):
     if request.method == "POST":
         edited_task_content = request.form.get("edited_task_content")
         if edited_task_content:
-            task.content = edited_task_content
+            task.content = edited_task_content # type: ignore
             task_db.session.commit()
     return redirect(url_for("index"))
 
