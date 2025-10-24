@@ -39,6 +39,13 @@ def edit(task_id):
     task = Task.query.filter_by(id=task_id).first()
     return render_template("edit.html", task=task)
 
+@app.route("/delete/<int:task_id>")
+def delete(task_id):
+    task = Task.query.filter_by(id=task_id).first()
+    task_db.session.delete(task)
+    task_db.session.commit()
+    return redirect(url_for("index"))
+
 @app.route("/save/<int:task_id>", methods=["POST"])
 def save(task_id):
     task = Task.query.filter_by(id=task_id).first()
@@ -47,6 +54,10 @@ def save(task_id):
         if edited_task_content:
             task.content = edited_task_content # type: ignore
             task_db.session.commit()
+    return redirect(url_for("index"))
+
+@app.route("/cancel")
+def cancel():
     return redirect(url_for("index"))
 
 if __name__ == "__main__":
