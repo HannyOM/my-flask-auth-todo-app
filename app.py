@@ -16,14 +16,37 @@ with app.app_context():
 @app.route("/")
 def index():
     tasks = Task.query.all()
+    print(tasks)
     return render_template("index.html", tasks=tasks)
 
-@app.route("/add", methods=["GET", "POST"])
+@app.route("/add", methods=["POST"])
 def add():
     task_content = request.form.get("task_content")
     new_task = Task(content=task_content, status=False) # type: ignore
     task_db.session.add(new_task)
     task_db.session.commit()
+    return redirect(url_for("index"))
+
+@app.route("/update/<int:task_id>")
+def update(task_id): 
+    task = Task.query.filter_by(id=task_id).first()
+    task.status = not task.status
+    task_db.session.commit()
+    return redirect(url_for("index"))
+
+@app.route("/edit/<int:task_id>")
+def edit(task_id):
+    task = Task.query.filter_by(id=task_id).first()
+    return render_template("edit.html", task=task)
+
+@app.route("/save/<int:task_id>", methods=["POST"])
+def save(task_id):
+    task = Task.query.filter_by(id=task_id).first()
+    if request.method == "POST":
+        edited_task_content = request.form.get("edited_task_content")
+        if edited_task_content:
+            task.content = edited_task_content
+            task_db.session.commit()
     return redirect(url_for("index"))
 
 if __name__ == "__main__":
