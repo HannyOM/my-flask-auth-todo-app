@@ -1,6 +1,6 @@
-# Flask Authentication App
+# Flask ToDo App with Authentication
 
-A flask authentication application made to allow users register on, log in to and log out of a webiste.
+A flask app application with authentication made to allow users register on, log in to and log out of a todo web application.
 
 ## Requirements:
 
