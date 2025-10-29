@@ -4,38 +4,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
 </head>
 
 <body>
-    <h1>Todo App</h1>
+    <div style="display: flex; justify-content: center; margin-top: 50px;">
+        <div class="ui raised segment" style="width: 65%;">
+            <h1 class="ui center aligned header">ToDo App</h1>
 
-    <form action="{{ url_for('add') }}" method="post">
-        <label for="task_content">Task</label>
-        <input name="task_content" type="text">
-        <button type="submit">Submit</button>
-    </form>
+            <form class="ui form" style="display: flex; justify-content: center;" action="{{url_for('add')}}"
+                method="post">
+                <div class="inline field">
+                    <label for="task">Task</label>
+                    <input name="task_content" type="text" placeholder="Enter Task...">
+                    <button class="ui green button" style="margin-left: 10px;" type="submit">Add</button>
+                </div>
+            </form>
 
-    {% for task in tasks %}
-    <span>
-        {{ task.content }}
-        {% if task.status == False %}
-        <p>Incomplete</p>
-        {% else %}
-        <p>Complete</p>
-        {% endif %}
-    </span>
-
-    <p>
-        <a href="/update/{{ task.id }}">Update</a>
-        <a href="/edit/{{ task.id }}">Edit</a>
-        <a href="/delete/{{ task.id }}">Delete</a>
-    </p>
-    {% endfor %}
-
-    <a href="{{ url_for('logout') }}">Logout</a>
-
-
+            {% for task in tasks %}
+            <div class="ui raised segment">
+                <div style="display: flex; justify-content: space-between;">
+                    <div>
+                        {{task.content}}
+                    </div>
+                    <div>
+                        {% if task.status == False %}
+                        <span class="ui label">Incomplete</span>
+                        {% else %}
+                        <span class="ui green label">Complete</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div style="margin-top: 20px;">
+                        <a class="small ui blue button" href="/update/{{ task.id }}">Update</a>
+                        <a class="small ui orange button" href="/edit/{{ task.id }}">Edit</a>
+                        <a class="small ui red button" href="/delete/{{ task.id }}">Delete</a>
+                    </div>
+                    <div>
+                        <p class="small ui label">{{ task.date }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <div class="ui raised segment" style="display: flex; justify-content: center; width: 65%;">
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div> -->
+    <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <a class="ui tiny button" href="{{ url_for('logout') }}">Logout</a>
+    </div>
 </body>
 
 </html>

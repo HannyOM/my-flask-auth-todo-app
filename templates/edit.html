@@ -4,18 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Edit</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
 </head>
 
 <body>
     <h1>Edit Page</h1>
 
-    <form action="/save/{{ task.id }}" method="post">
-        <label for="edited_task_content">Task</label>
-        <input name="edited_task_content" type="text" value="{{ task.content }}">
-        <button type="submit">Save</button>
-        <a href="{{url_for('cancel')}}">Cancel</a>
-    </form>
+    <div style="margin-top: 100px; display: flex; justify-content: center;">
+        <div class="ui raised segment" style="width: 65%">
+            <form class="ui form" action="/save/{{ task.id }}" method="post">
+                <input name="edited_task_content" type="text" value="{{task.content}}">
+                <p>
+                    <span>
+                        <button class="small ui green button" type="submit">Save</button>
+                        <a class="small ui blue button" href="{{url_for('home')}}">Cancel</a>
+                    </span>
+                </p>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

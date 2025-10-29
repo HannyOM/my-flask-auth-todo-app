@@ -4,23 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
 </head>
 
 <body>
-    <h1>Login page</h1>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <form action="{{url_for('login')}}" method="post" class="ui raised segment form" style="width: 50%;">
+            <h3 class="ui center aligned header">Login</h3>
 
-    <form action="{{ url_for('login') }}" method="post">
-        <label for="username">Username</label>
-        <input name="username" type="text">
-        <br>
-        <label for="password">Password</label>
-        <input name="password" type="text">
-        <br>
-        <button type="submit">Login</button>
+            <div class="field">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Username">
+            </div>
 
-        <p>Not registered?<a href="{{ url_for('register') }}">Register</a></p>
-    </form>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Password">
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <button class="ui blue button" type="submit">Login</button>
+                <p>Not registered? <a href="{{url_for('register')}}">Register</a></p>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

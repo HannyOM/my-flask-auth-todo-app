@@ -4,12 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Username Already Exists</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
 </head>
 
 <body>
-    <h1>Username already exists</h1>
-    <a href="{{ url_for('register') }}">Retry</a>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div class="ui raised segment">
+            <div class="ui medium header">
+                Username already taken! <a href="{{ url_for('register') }}">Test your creativity again.</a> You've GOT
+                this👍
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
